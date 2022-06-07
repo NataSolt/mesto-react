@@ -13,7 +13,6 @@ function Main(props) {
 
   React.useEffect(() => {
     Promise.all([apiCards.getUsers(), apiCards.getCards()])
-
       .then(([profile, cards]) => {
         setUserName(profile.name);
         setUserDescription(profile.about);
@@ -29,15 +28,18 @@ function Main(props) {
     <main className="content">
       <section className="profile">
         <div className="profile__avatar-container" onClick={props.onEditAvatar}>
-          <img
-            src={userAvatar}
-            alt="портрет пользователя"
-            className="profile__avatar"
-          />
+          {userAvatar && (
+            <img
+              onClick={props.onEditAvatar}
+              className="profile__avatar"
+              src={userAvatar}
+              alt="Аватар профиля"
+            />
+          )}
         </div>
         <div className="profile__info">
           <div className="profile__container">
-            <h1 className="profile__name">{userName}</h1>
+            <div className="profile__name">{userName}</div>
             <button
               type="button"
               className="profile__add-button"

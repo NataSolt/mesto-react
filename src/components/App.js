@@ -61,7 +61,6 @@ function App() {
               id="input-src"
               placeholder="Ссылка на изображение"
               name="avatar"
-              //value=""
               required
             />
             <span className="popup__input-error input-src-error"></span>
@@ -128,7 +127,6 @@ function App() {
               id="input-url"
               placeholder="Ссылка на картинку"
               name="link"
-              //value=""
               required
             />
             <span className="popup__input-error input-url-error"></span>
