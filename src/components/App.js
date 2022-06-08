@@ -56,11 +56,11 @@ function App() {
         >
           <label className="popup__lable">
             <input
-              type="url"
-              className="popup-avatar__text popup-avatar__text_type_link popup-input"
               id="input-src"
-              placeholder="Ссылка на изображение"
+              type="url"
               name="avatar"
+              className="popup-avatar__text popup-avatar__text_type_link popup-input"
+              placeholder="Ссылка на изображение"
               required
             />
             <span className="popup__input-error input-src-error"></span>
