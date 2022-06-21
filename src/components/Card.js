@@ -1,8 +1,30 @@
 import React from "react";
+import CurrentUserContext from "../contexts/currentUserContext";
 
 function Card(props) {
+  const currentUser = React.useContext(CurrentUserContext);
+  // являемся ли мы владельцем текущей карточки
+  const isOwn = props.card.owner._id === currentUser._id;
+  // Определяем, есть ли у карточки лайк
+  const isLiked = props.card.likes.some((i) => i._id === currentUser._id);
+  // Создаём переменную, которая используется при удалении
+  const cardDeleteButtonClassName = `card__trash ${
+    isOwn ? "card__trash_visible" : "card__trash_hidden"
+  }`;
+  const cardLikeButtonClassName = `card__like ${
+    isLiked ? "card__like_active" : " "
+  }`;
+
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
+  }
+
+  function handleLikeClick() {
+    props.onCardLike(props.card);
+  }
+
   function handleClick() {
-    props.onCardClick(props.card)
+    props.onCardClick(props.card);
   }
 
   return (
@@ -17,7 +39,8 @@ function Card(props) {
         <h2 className="card__title">{props.card.name}</h2>
         <div className="card__container-likes">
           <button
-            className="card__like"
+            className={cardLikeButtonClassName}
+            onClick={handleLikeClick}
             aria-label="нравится"
             type="button"
           ></button>
@@ -27,7 +50,8 @@ function Card(props) {
       <button
         type="button"
         aria-label="корзина"
-        className="card__trash"
+        className={cardDeleteButtonClassName}
+        onClick={handleDeleteClick}
       ></button>
     </article>
   );
