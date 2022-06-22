@@ -9,8 +9,10 @@ function EditAvatarPopup(props) {
     props.onUpdateUser({
       avatar: refAvatar.current.value,
     });
-    evt.target.reset();
   }
+  React.useEffect(() => {
+    refAvatar.current.value = ""
+}, [props.isOpen])
 
   return (
     <PopupWithForm
@@ -29,6 +31,7 @@ function EditAvatarPopup(props) {
           className="popup-avatar__text popup-avatar__text_type_link popup-input"
           placeholder="Ссылка на изображение"
           ref={refAvatar}
+          defaultValue=""
           required
         />
         <span className="popup__input-error input-src-error"></span>
