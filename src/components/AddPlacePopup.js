@@ -33,6 +33,7 @@ function AddPlacePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
+      disabled={props.state}
     >
       <label className="popup__lable">
         <input
